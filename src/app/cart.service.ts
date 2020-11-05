@@ -7,6 +7,10 @@ import { HttpClient } from '@angular/common/http';
 export class CartService {
   items = [];
 
+  constructor(
+    private http: HttpClient
+  ) { }
+
   addToCart = (product) => this.items.push(product);
 
   getItems = () => this.items;
@@ -16,9 +20,5 @@ export class CartService {
     return this.items;
   }
 
-  // инжектнем HttpClient в сигнатуре конструктора,
-  // чтобы иметь возможность фетчить информацию и взаимодействовать со сторонними API
-  constructor(
-    private http: HttpClient
-  ) { }
+   getShippingPrices = () => this.http.get('/assets/shipping.json');
 }
