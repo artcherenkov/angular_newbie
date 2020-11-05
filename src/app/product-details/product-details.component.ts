@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-// импортируем необходимый пакет, а также массив продуктов
-import {ActivatedRoute} from '@angular/router';
-
-import {products} from '../products';
+import { products } from '../products';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -11,18 +10,15 @@ import {products} from '../products';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-  // добавим поле класса
   product;
 
-  // Инжектнем ActivatedRoute в конструктор.
-  // ActivatedRoute уникален для каждого компонента. Он содержит информацию о роуте, параметрах роута и др.
-  // Инжектая (добавляя) ActivatedRoute в конструктор, мы конфигурируем компонент на использование сервиса (service).
+  // Инжектнем наш сервис в сигнатуру конструктора
   constructor(
     private route: ActivatedRoute,
+    private cartService: CartService
   ) { }
 
   ngOnInit(): void {
-    // Подписываемся на параметры роута и находим по переданному в роуте индексу продукт, на страницу которого мы перешли.
     this.route.paramMap.subscribe(params => this.product = products[+params.get('productId')]);
   }
 
