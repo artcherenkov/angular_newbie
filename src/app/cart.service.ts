@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -6,7 +7,6 @@ import { Injectable } from '@angular/core';
 export class CartService {
   items = [];
 
-  // Определим методы класса
   addToCart = (product) => this.items.push(product);
 
   getItems = () => this.items;
@@ -16,5 +16,9 @@ export class CartService {
     return this.items;
   }
 
-  constructor() { }
+  // инжектнем HttpClient в сигнатуре конструктора,
+  // чтобы иметь возможность фетчить информацию и взаимодействовать со сторонними API
+  constructor(
+    private http: HttpClient
+  ) { }
 }
