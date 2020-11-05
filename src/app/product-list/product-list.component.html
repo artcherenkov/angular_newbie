@@ -1,8 +1,23 @@
 <h2>Products</h2>
 
+<!-- Создадим div для каждого телефона. Список телефонов хранится в product-list.component.ts -->
+<div *ngFor="let product of products">
 
-<!-- 
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
--->
+<!-- Добавим название телефона, в котором есть ссылка с атрибутом  title -->
+  <h3>
+    <a [title]="product.name + ' details'">
+      {{ product.name }}
+    </a>
+  </h3>
+
+<!-- Если у продукта есть описание, выведем его -->
+  <p *ngIf="product.description">
+    Description: {{ product.description  }}
+  </p>
+
+<!-- Добавим кнопку Share, обработчик которой описан в product-list.component.ts -->
+  <button (click)="share()">
+    Share
+  </button>
+
+</div>
