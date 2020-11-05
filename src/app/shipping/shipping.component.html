@@ -1,0 +1,10 @@
+<h3>Shipping Prices</h3>
+
+<!-- Используем асинхронный пайп, который возвращает последние данные из потока и
+      продолжает это делать в течение жизненного цикла компонента.
+     Это значит, что даже после запуска и отрисовки приложения при изменении файла
+      assets/shipping.json изменится и содержимое страницы (вау!) -->
+<div class="shipping-item" *ngFor="let shipping of shippingCosts | async">
+  <span>{{ shipping.type }}</span>
+  <span>{{ shipping.price | currency }}</span>
+</div>
