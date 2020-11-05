@@ -1,1 +1,12 @@
-<p>product-details works!</p>
+<h2>Product Details</h2>
+
+<!-- В случае, если индексу, переданному в роуте, соответствует какой-то продукт, отрисуем информацию о нем -->
+<div *ngIf="product">
+  <h3>{{ product.name }}</h3>
+
+  <!-- Здесь использован currency pipe для представления числа как валюты -->
+  <!-- Пайп (pipe) - это способ передачи информации в HTML-шаблон -->
+  <h4>{{ product.price | currency }}</h4>
+
+  <p>{{ product.description }}</p>
+</div>
