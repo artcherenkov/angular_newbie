@@ -12,4 +12,7 @@ export class ProductListComponent {
 
   share = () => window.alert('The product has been shared!');
 
+  // Далее нужно в родительском(!) компоненте отловить событие и описать, что должно произойти.
+  onNotify = () => window.alert(`You will be notified when the product goes on sale`);
+
 }
