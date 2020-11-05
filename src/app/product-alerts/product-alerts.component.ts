@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-product-alerts',
@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-alerts.component.css']
 })
 export class ProductAlertsComponent implements OnInit {
+  // The @Input() decorator indicates that the property value passes in from the component's parent, the product list component.
+  @Input() product;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
