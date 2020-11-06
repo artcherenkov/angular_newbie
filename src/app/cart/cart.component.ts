@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-
-// импортируем
 import {FormBuilder} from '@angular/forms';
 
 import {CartService} from '../cart.service';
@@ -12,18 +10,12 @@ import {CartService} from '../cart.service';
 })
 export class CartComponent implements OnInit {
   items;
-
-  // создадим поле класса
   checkoutForm;
 
   constructor(
     private cartService: CartService,
-
-    // инжектнем
     private formBuilder: FormBuilder
   ) {
-
-    // создадим экземпляр класса и с помощью метода group() определим поля формы
     this.checkoutForm = this.formBuilder.group({
       name: '',
       address: ''
@@ -32,6 +24,13 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.items = this.cartService.getItems();
+  }
+
+  onSubmit = (customerData) => {
+    this.items = this.cartService.clearCart();
+    this.checkoutForm.reset;
+
+    console.warn('Your order has been submitted', customerData);
   }
 
 }
