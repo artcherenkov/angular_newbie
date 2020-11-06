@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
 
-// импортируем сервис `Cart`
-import { CartService } from '../cart.service';
+import {CartService} from '../cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -10,15 +10,27 @@ import { CartService } from '../cart.service';
 })
 export class CartComponent implements OnInit {
   items;
+  checkoutForm;
 
-  // инжектнем сервис в сигнатуру конструктора
   constructor(
-    private cartService: CartService
-  ) { }
+    private cartService: CartService,
+    private formBuilder: FormBuilder
+  ) {
+    this.checkoutForm = this.formBuilder.group({
+      name: '',
+      address: ''
+    });
+  }
 
   ngOnInit(): void {
-    // установим список продуктов в корзине
     this.items = this.cartService.getItems();
+  }
+
+  onSubmit = (customerData) => {
+    this.items = this.cartService.clearCart();
+    this.checkoutForm.reset;
+
+    console.warn('Your order has been submitted', customerData);
   }
 
 }
